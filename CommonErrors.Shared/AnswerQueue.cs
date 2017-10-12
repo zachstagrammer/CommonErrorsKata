@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace CommonErrorsKata.Shared
 {
-    public class AnswerStack<T> : Stack<T> where T : IGradable
+    public class AnswerQueue<T> : Queue<T> where T : IGradable
     {
         private readonly int size;
 
@@ -12,20 +12,21 @@ namespace CommonErrorsKata.Shared
         /// <summary>
         /// Stack that cannot exceed it's size
         /// </summary>
-        /// <param name="size">Maximum size of the stack</param>
-        public AnswerStack(int size)
+        /// <param name="size">Maximum size of the queue</param>
+        public AnswerQueue(int size)
         {
             this.size = size;
         }
 
         /// <summary>
-        /// Hides the default implementation of Stack push 
+        /// Hides the default implementation of queue Enqueue 
         /// </summary>
         /// <param name="item"></param>
-        public new void Push(T item)
+        public new void Enqueue(T item)
         {
-            if (this.Count < size)
-                base.Push(item);
+            if (this.Count >= size) base.Dequeue();
+
+            base.Enqueue(item);
         }
 
         

@@ -16,31 +16,49 @@ namespace CommonErrors.Test
         {
             //Arrange
             var size = 10;
-            var stack = new AnswerStack<TrueFalseAnswer>(size);
+            var stack = new AnswerQueue<TrueFalseAnswer>(size);
 
             //Act
             for (int i = 0; i < size+1; i++)
-                stack.Push(new TrueFalseAnswer(true));
+                stack.Enqueue(new TrueFalseAnswer(true));
 
             //Assert
             Assert.IsTrue(stack.Count <= 10);
         }
 
         [Test]
-        public void ShouldReturnExpectedGrade()
+        public void ShouldForgetAtCapacity()
         {
             //Arrange
             var size = 10;
-            var stack = new AnswerStack<TrueFalseAnswer>(size);
-            stack.Push(new TrueFalseAnswer(false));
+            var stack = new AnswerQueue<TrueFalseAnswer>(size);
+            stack.Enqueue(new TrueFalseAnswer(false));
             for (var i =0; i< 10; i++)
-                stack.Push(new TrueFalseAnswer(true));
+                stack.Enqueue(new TrueFalseAnswer(true));
             
             //Act
             var grade = stack.Grade;
             
             //Assert
             Assert.AreEqual(100, grade);
+        }
+
+        [Test]
+        public void ShouldReturnExpectedAverage()
+        {
+            //Arrange
+            var size = 10;
+            var stack = new AnswerQueue<TrueFalseAnswer>(size);
+            stack.Enqueue(new TrueFalseAnswer(false));
+            stack.Enqueue(new TrueFalseAnswer(true));
+            stack.Enqueue(new TrueFalseAnswer(true));
+            stack.Enqueue(new TrueFalseAnswer(false));
+
+            //Act
+            var grade = stack.Grade;
+
+            //Assert
+            Assert.AreEqual(50, grade);
         }
     }
 }

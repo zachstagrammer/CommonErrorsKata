@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnswerStack.cs" />
+    <Compile Include="AnswerQueue.cs" />
     <Compile Include="CommonAnswer.cs" />
     <Compile Include="IGradable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
