@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,6 +11,7 @@ namespace CommonErrorsKata
 {
     public partial class CommonErrorsForm : Form
     {
+        private const int MinRightAnswer = 15;
         private readonly AnswerQueue<TrueFalseAnswer> answerQueue;
         private readonly string[] files;
         private readonly SynchronizationContext synchronizationContext;
@@ -21,10 +23,10 @@ namespace CommonErrorsKata
         {
             InitializeComponent();
             synchronizationContext = SynchronizationContext.Current;
-            files = Directory.GetFiles(Environment.CurrentDirectory +  @"..\..\..\ErrorPics");
+            files = Directory.GetFiles(Environment.CurrentDirectory +  @"..\..\ErrorPics");
             possibleAnswers = new string[] { "Missing File", "null instance", "divide by zero" };
             lstAnswers.DataSource = possibleAnswers;
-            answerQueue = new AnswerQueue<TrueFalseAnswer>(15);
+            answerQueue = new AnswerQueue<TrueFalseAnswer>(MinRightAnswer);
             Next();
             lstAnswers.Click += LstAnswers_Click;
             StartTimer();
