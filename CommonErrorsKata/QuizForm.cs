@@ -21,7 +21,7 @@ namespace CommonErrorsKata
         {
             InitializeComponent();
             synchronizationContext = SynchronizationContext.Current;
-            files = System.IO.Directory.GetFiles(Environment.CurrentDirectory +  @"..\..\..\ErrorPics");
+            files = Directory.GetFiles(Environment.CurrentDirectory +  @"..\..\..\ErrorPics");
             possibleAnswers = new string[] { "Missing File", "null instance", "divide by zero" };
             lstAnswers.DataSource = possibleAnswers;
             answerQueue = new AnswerQueue<TrueFalseAnswer>(15);
