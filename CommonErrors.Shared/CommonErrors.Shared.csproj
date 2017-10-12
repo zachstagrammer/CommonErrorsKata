@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnswerStack.cs" />
+    <Compile Include="CommonAnswer.cs" />
     <Compile Include="IGradable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrueFalseAnswer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
