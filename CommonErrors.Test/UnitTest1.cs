@@ -25,5 +25,22 @@ namespace CommonErrors.Test
             //Assert
             Assert.IsTrue(stack.Count <= 10);
         }
+
+        [Test]
+        public void ShouldReturnExpectedGrade()
+        {
+            //Arrange
+            var size = 10;
+            var stack = new AnswerStack<TrueFalseAnswer>(size);
+            stack.Push(new TrueFalseAnswer(false));
+            for (var i =0; i< 10; i++)
+                stack.Push(new TrueFalseAnswer(true));
+            
+            //Act
+            var grade = stack.Grade;
+            
+            //Assert
+            Assert.AreEqual(100, grade);
+        }
     }
 }

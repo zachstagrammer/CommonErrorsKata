@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace CommonErrorsKata.Shared
 {
-    public class AnswerStack<T> : Stack<T> where T: IGradable
+    public class AnswerStack<T> : Stack<T> where T : IGradable
     {
         private readonly int size;
+
+        public decimal Grade { get{ return this.Average(x => x.Grade); } }
 
         /// <summary>
         /// Stack that cannot exceed it's size
