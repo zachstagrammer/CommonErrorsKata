@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CommonErrorsKata
 {
-    public partial class Form1 : Form
+    public partial class CommonErrorsForm : Form
     {
-        public Form1()
+        public CommonErrorsForm()
         {
             InitializeComponent();
         }
