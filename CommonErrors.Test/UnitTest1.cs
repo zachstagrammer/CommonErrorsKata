@@ -19,14 +19,11 @@ namespace CommonErrors.Test
             var stack = new AnswerStack<TrueFalseAnswer>(size);
 
             //Act
-            for (int i = 0; i < 11; i++)
-            {
+            for (int i = 0; i < size+1; i++)
                 stack.Push(new TrueFalseAnswer(true));
-            }
 
             //Assert
-            var result = stack.Count == 10;
-            Assert.IsTrue(result);
+            Assert.IsTrue(stack.Count <= 10);
         }
     }
 }

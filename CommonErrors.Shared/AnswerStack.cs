@@ -21,17 +21,11 @@ namespace CommonErrorsKata.Shared
         /// <param name="item"></param>
         public new void Push(T item)
         {
-            base.Push(item);
+            if (this.Count < size)
+                base.Push(item);
         }
 
-        /// <summary>
-        /// Hides the default implementation of Stack Add
-        /// </summary>
-        /// <param name="item">Item to add to the size</param>
-        public void Add(T item)
-        {
-            this.Add(item);
-        }
+        
         
     }
 }
