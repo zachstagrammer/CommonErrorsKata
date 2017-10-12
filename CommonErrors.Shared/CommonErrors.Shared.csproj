@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AnswerQueue.cs" />
     <Compile Include="CommonAnswer.cs" />
+    <Compile Include="IEnumerableHelpers.cs" />
     <Compile Include="IGradable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrueFalseAnswer.cs" />

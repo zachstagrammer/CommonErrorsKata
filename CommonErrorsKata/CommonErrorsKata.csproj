@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnswerStack.cs" />
     <Compile Include="QuizForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +79,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ErrorPics\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonErrors.Shared\CommonErrors.Shared.csproj">
+      <Project>{bb0caba6-7c36-402e-834d-0e99c28d2317}</Project>
+      <Name>CommonErrors.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
