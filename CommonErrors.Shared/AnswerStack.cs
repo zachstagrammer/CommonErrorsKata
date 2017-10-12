@@ -21,7 +21,7 @@ namespace CommonErrorsKata.Shared
         /// <param name="item"></param>
         public new void Push(T item)
         {
-            this.Push(item);
+            base.Push(item);
         }
 
         /// <summary>
