@@ -47,7 +47,7 @@ namespace CommonErrorsKata
             i = 100;
             var tokens = currentBaseName.Split(' ');
             //TODO:  Figure out what is a valid answer.
-            answerQueue.Enqueue(new TrueFalseAnswer(result));
+            answerQueue.Enqueue(new TrueFalseAnswer(true));
             Next();
         }
 
