@@ -38,7 +38,7 @@ namespace CommonErrorsKata
                 for (currentPercent = 100; currentPercent > 0; currentPercent--)
                 {
                     UpdateProgress(currentPercent);
-                    Thread.Sleep(500);
+                    Thread.Sleep(50);
                 }
                 Message("Need to be quicker on your feet next time!  Try again...");
             });
