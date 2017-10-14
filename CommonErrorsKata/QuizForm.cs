@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,7 +16,6 @@ namespace CommonErrorsKata
         private readonly SynchronizationContext synchronizationContext;
         private int currentPercent = 100;
         private string currentImageFileName = null;
-        private readonly string[] possibleAnswers = null;
         private readonly string[] fileNames = null;
 
         public CommonErrorsForm()
@@ -25,9 +23,8 @@ namespace CommonErrorsKata
             InitializeComponent();
             synchronizationContext = SynchronizationContext.Current;
             files = Directory.GetFiles(Environment.CurrentDirectory +  @"..\..\..\ErrorPics");
-            possibleAnswers = new string[] { "Missing File", "null instance", "divide by zero" };
-            fileNames = new string[] {"object_ref.png", "object_ref_not_set.png", "divide_by_zero.png" };
-            lstAnswers.DataSource = possibleAnswers;
+            fileNames = files.Select(file => Path.GetFileName(file)).ToArray();
+            lstAnswers.DataSource = fileNames.Select(element => element.Replace(".png", "")).ToList();
             answerQueue = new AnswerQueue<TrueFalseAnswer>(MinAnswer);
             AskNextQuestion();
             lstAnswers.Click += LstAnswers_Click;
@@ -50,22 +47,8 @@ namespace CommonErrorsKata
         private void LstAnswers_Click(object sender, EventArgs e)
         {
             currentPercent = 100;
-            var currentImageName = currentImageFileName.Split(' ');
 
-            if (currentImageName.Length == 0)
-            {
-                return;
-            }
-
-            var imageName = currentImageName[0];
-            var correctIndex = Array.IndexOf(fileNames, imageName);
-
-            if (correctIndex < 0 || correctIndex >= possibleAnswers.Length)
-            {
-                return;
-            }
-            
-            var isCorrectAnswer = possibleAnswers[correctIndex] == lstAnswers.SelectedItem.ToString();
+            var isCorrectAnswer = currentImageFileName.Replace(".png", "") == lstAnswers.SelectedItem.ToString();
             answerQueue.Enqueue(new TrueFalseAnswer(isCorrectAnswer));
 
             AskNextQuestion();
