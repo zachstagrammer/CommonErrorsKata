@@ -16,7 +16,7 @@ namespace CommonErrorsKata
         private readonly string[] files;
         private readonly SynchronizationContext synchronizationContext;
         private int currentPercent = 100;
-        private string currentBaseName = null;
+        private string currentImageFileName = null;
         private readonly string[] possibleAnswers = null;
         private readonly string[] fileNames = null;
 
@@ -50,7 +50,7 @@ namespace CommonErrorsKata
         private void LstAnswers_Click(object sender, EventArgs e)
         {
             currentPercent = 100;
-            var currentImageName = currentBaseName.Split(' ');
+            var currentImageName = currentImageFileName.Split(' ');
 
             if (currentImageName.Length == 0)
             {
@@ -65,8 +65,8 @@ namespace CommonErrorsKata
                 return;
             }
             
-            var IsCorrectAnswer = lstAnswers.SelectedItem.ToString() == possibleAnswers[correctIndex];
-            answerQueue.Enqueue(new TrueFalseAnswer(IsCorrectAnswer));
+            var isCorrectAnswer = possibleAnswers[correctIndex] == lstAnswers.SelectedItem.ToString();
+            answerQueue.Enqueue(new TrueFalseAnswer(isCorrectAnswer));
 
             AskNextQuestion();
 
@@ -80,9 +80,9 @@ namespace CommonErrorsKata
                 Application.Exit();
                 return;
             }
-            label1.Text = answerQueue.Grade.ToString() + "%";
+            label1.Text = answerQueue.Grade + "%";
             var file = files.GetRandom();
-            currentBaseName = Path.GetFileName(file);
+            currentImageFileName = Path.GetFileName(file);
             pbImage.ImageLocation = file;
         }
 
