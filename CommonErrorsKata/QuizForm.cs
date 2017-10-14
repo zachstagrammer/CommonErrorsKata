@@ -58,18 +58,14 @@ namespace CommonErrorsKata
             }
 
             var imageName = currentImageName[0];
-            var index = Array.IndexOf(fileNames, imageName);
+            var correctIndex = Array.IndexOf(fileNames, imageName);
 
-            if (index < 0 || index >= possibleAnswers.Length)
+            if (correctIndex < 0 || correctIndex >= possibleAnswers.Length)
             {
                 return;
             }
-
-            var correctAnswer = possibleAnswers[index];
-
-            Console.WriteLine(lstAnswers.SelectedItem.ToString());
-
-            var IsCorrectAnswer = lstAnswers.SelectedItem.ToString() == correctAnswer;
+            
+            var IsCorrectAnswer = lstAnswers.SelectedItem.ToString() == possibleAnswers[correctIndex];
             answerQueue.Enqueue(new TrueFalseAnswer(IsCorrectAnswer));
 
             AskNextQuestion();
