@@ -22,7 +22,7 @@ namespace CommonErrorsKata
         {
             InitializeComponent();
             synchronizationContext = SynchronizationContext.Current;
-            files = Directory.GetFiles(Environment.CurrentDirectory +  @"..\..\..\ErrorPics");
+            files = Directory.GetFiles(Environment.CurrentDirectory + @"..\..\..\ErrorPics");
             fileNames = files.Select(file => Path.GetFileName(file)).ToArray();
             lstAnswers.DataSource = fileNames.Select(element => element.Replace(".png", "")).ToList();
             answerQueue = new AnswerQueue<TrueFalseAnswer>(MinAnswer);
@@ -71,15 +71,17 @@ namespace CommonErrorsKata
 
         public void UpdateProgress(int value)
         {
-            synchronizationContext.Post(new SendOrPostCallback(x => {
+            synchronizationContext.Post(x =>
+            {
                 progress.Value = value;
-            }), value);
+            }, value);
         }
         public void Message(string value)
         {
-            synchronizationContext.Post(new SendOrPostCallback(x => {
+            synchronizationContext.Post(x =>
+            {
                 MessageBox.Show(value);
-            }), value);
+            }, value);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
