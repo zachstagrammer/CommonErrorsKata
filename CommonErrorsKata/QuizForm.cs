@@ -69,14 +69,8 @@ namespace CommonErrorsKata
 
             Console.WriteLine(lstAnswers.SelectedItem.ToString());
 
-            if (lstAnswers.SelectedItem.ToString() == correctAnswer)
-            {
-                answerQueue.Enqueue(new TrueFalseAnswer(true));
-            }
-            else
-            {
-                answerQueue.Enqueue(new TrueFalseAnswer(false));
-            }
+            var isCorrect = lstAnswers.SelectedItem.ToString() == correctAnswer;
+            answerQueue.Enqueue(new TrueFalseAnswer(isCorrect));
 
             Next();
 
