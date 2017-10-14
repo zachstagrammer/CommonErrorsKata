@@ -29,7 +29,7 @@ namespace CommonErrorsKata
             fileNames = new string[] {"object_ref.png", "object_ref_not_set.png", "divide_by_zero.png" };
             lstAnswers.DataSource = possibleAnswers;
             answerQueue = new AnswerQueue<TrueFalseAnswer>(MinAnswer);
-            Next();
+            AskNextQuestion();
             lstAnswers.Click += LstAnswers_Click;
             StartTimer();
         }
@@ -69,14 +69,14 @@ namespace CommonErrorsKata
 
             Console.WriteLine(lstAnswers.SelectedItem.ToString());
 
-            var isCorrect = lstAnswers.SelectedItem.ToString() == correctAnswer;
-            answerQueue.Enqueue(new TrueFalseAnswer(isCorrect));
+            var IsCorrectAnswer = lstAnswers.SelectedItem.ToString() == correctAnswer;
+            answerQueue.Enqueue(new TrueFalseAnswer(IsCorrectAnswer));
 
-            Next();
+            AskNextQuestion();
 
         }
 
-        private void Next()
+        private void AskNextQuestion()
         {
             if (answerQueue.Count >= MinAnswer && answerQueue.Grade >= 98)
             {
