@@ -10,6 +10,7 @@ namespace CommonErrorsKata
 {
     public partial class CommonErrorsForm : Form
     {
+        private const int MinGrade = 98;
         private const int MinAnswer = 15;
         private readonly AnswerQueue<TrueFalseAnswer> answerQueue;
         private readonly string[] files;
@@ -57,7 +58,7 @@ namespace CommonErrorsKata
 
         private void AskNextQuestion()
         {
-            if (answerQueue.Count >= MinAnswer && answerQueue.Grade >= 98)
+            if (answerQueue.Count >= MinAnswer && answerQueue.Grade >= MinGrade)
             {
                 MessageBox.Show("Congratulations you've defeated me!");
                 Application.Exit();
